@@ -1,0 +1,138 @@
+﻿<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>garlatonic.note</title>
+    <meta
+      name="description"
+      content="Markdown으로 기록하고 GitHub Pages로 배포하는 개인 개발 학습 저널"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" href="./favicon.ico" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="카테고리와 문서 목록">
+        <div class="workspace">
+          <a class="brand" href="./">
+            <span class="brand-mark"><i data-lucide="book-open"></i></span>
+            <span>
+              <strong>garlatonic.note</strong>
+            </span>
+          </a>
+          <button
+            class="icon-button mobile-only"
+            id="closeSidebar"
+            type="button"
+            aria-label="문서 목록 닫기"
+          >
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <label class="search-wrap" for="searchInput">
+          <i data-lucide="search" aria-hidden="true"></i>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </label>
+
+        <nav id="categoryNav" class="category-nav"></nav>
+
+        <button
+          class="theme-toggle"
+          id="themeToggle"
+          type="button"
+          aria-label="다크 모드로 전환"
+        >
+          <i id="themeIcon" data-lucide="moon" aria-hidden="true"></i>
+          <span>다크 모드</span>
+        </button>
+      </aside>
+
+      <div class="page-shell">
+        <main class="content" id="content" tabindex="-1">
+          <button
+            class="icon-button content-menu mobile-only"
+            id="menuToggle"
+            type="button"
+            aria-label="문서 목록 열기"
+          >
+            <i data-lucide="menu"></i>
+          </button>
+
+          <section id="homeView" class="home-view">
+            <p class="page-icon" aria-hidden="true">
+              <i data-lucide="notebook-tabs"></i>
+            </p>
+            <h1>Dev Journal</h1>
+            <p class="lead">
+              매일 배운 내용을 Markdown으로 정리하고, 카테고리별로 다시 꺼내
+              읽는 개인 개발 학습 공간입니다.
+            </p>
+
+            <div class="stats" id="stats"></div>
+
+            <section class="recent-section" aria-labelledby="recentTitle">
+              <div class="section-title">
+                <h2 id="recentTitle">최근 문서</h2>
+                <span id="postCount"></span>
+              </div>
+              <div class="post-grid" id="recentPosts"></div>
+            </section>
+          </section>
+
+          <article id="postView" class="post-view hidden">
+            <nav
+              class="breadcrumb"
+              id="breadcrumb"
+              aria-label="현재 문서 위치"
+            ></nav>
+            <div class="post-meta">
+              <span id="postCategory"></span>
+              <span id="postDate"></span>
+            </div>
+            <h1 id="postTitle"></h1>
+            <div class="tag-list" id="postTags"></div>
+            <div id="markdownBody" class="markdown-body"></div>
+          </article>
+
+          <section id="errorView" class="error-view hidden" role="alert">
+            <p class="page-icon" aria-hidden="true">
+              <i data-lucide="file-question"></i>
+            </p>
+            <h1>문서를 찾을 수 없습니다.</h1>
+            <p class="lead">
+              주소를 확인하거나 사이드바에서 다른 문서를 선택해 주세요.
+            </p>
+            <a class="text-link" href="./">홈으로 돌아가기</a>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
