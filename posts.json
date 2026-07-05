@@ -40,5 +40,12 @@
     "path": "live-coding/promise-my-all.md",
     "date": "2026-07-05",
     "tags": ["live-coding", "javascript", "promise", "all"]
+  },
+  {
+    "title": "myBind() 메서드 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/function-my-bind.md",
+    "date": "2026-07-05",
+    "tags": ["live-coding", "javascript", "function", "bind"]
   }
 ]

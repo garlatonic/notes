@@ -1,4 +1,4 @@
-# Promise.myAll() 구현하기
+# myAll() 메서드 구현하기
 
 문제를 내면서 나도 공부하는 live coding... 문제 출제는 gpt에게 맡기고 나도 직접 풀어보았다.
 
