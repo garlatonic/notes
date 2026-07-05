@@ -9,14 +9,14 @@
   {
     "title": "myMap() 메서드 구현하기",
     "category": "live-coding",
-    "path": "live-coding/my-map.md",
+    "path": "live-coding/array-my-map.md",
     "date": "2026-07-05",
     "tags": ["live-coding", "javascript", "array", "prototype", "this", "map"]
   },
   {
     "title": "myFilter() 메서드 구현하기",
     "category": "live-coding",
-    "path": "live-coding/my-filter.md",
+    "path": "live-coding/array-my-filter.md",
     "date": "2026-07-05",
     "tags": [
       "live-coding",

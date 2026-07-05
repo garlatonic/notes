@@ -17,7 +17,7 @@
 
 myMap() 메서드의 구현 방식에서 `prototype`, `this`의 동작 방식에 대한 이해가 충분하다면 어렵지 않게 구현할 수 있다. 만약 이해가 부족했다면 `myMap()` 메서드 구현 글을 참고하면 도움이 된다.
 
-[./my-map.md](./my-map.md)
+[./array-my-map.md](./array-my-map.md)
 
 ### filter() 메서드에서 사용되는 인자들과 동작 방식
 

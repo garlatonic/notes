@@ -377,7 +377,6 @@ function createInlinePostCard(post) {
   const card = document.createElement("a");
   const category = CATEGORY_LABELS[post.category] || post.category;
   const tags = (post.tags || [])
-    .slice(0, 3)
     .map((tag) => `#${tag}`)
     .join(" ");
 
