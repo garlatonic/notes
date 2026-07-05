@@ -1,15 +1,15 @@
 ﻿const CATEGORY_LABELS = {
-  daily: "Daily",
+  daily: "TIL",
   frontend: "Frontend",
   javascript: "JavaScript",
   react: "React",
   nextjs: "Next.js",
-  troubleshooting: "Troubleshooting",
-  algorithm: "Algorithm",
+  troubleshooting: "트러블슈팅",
+  algorithm: "알고리즘",
   cs: "Computer Science",
-  projects: "Projects",
-  "live-coding": "Live Coding",
-  "coding-test": "Coding Test",
+  projects: "프로젝트",
+  "live-coding": "라이브 코딩",
+  "coding-test": "코딩 테스트",
 };
 
 const CATEGORY_ORDER = [
@@ -25,6 +25,8 @@ const CATEGORY_ORDER = [
   "live-coding",
   "coding-test",
 ];
+
+const MIN_SKELETON_DURATION_MS = 150;
 
 const state = {
   posts: [],
@@ -72,9 +74,15 @@ document.addEventListener("DOMContentLoaded", init);
 window.addEventListener("hashchange", handleRoute);
 
 async function init() {
+  const loadingStartedAt = Date.now();
+
   applySavedTheme();
   bindEvents();
   renderIcons();
+  renderSidebarSkeleton();
+  renderHomeSkeleton();
+  setLoadingState(true);
+  showHome();
 
   try {
     const response = await fetch("./posts.json");
@@ -84,11 +92,16 @@ async function init() {
     state.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
     state.filteredPosts = [...state.posts];
 
+    await ensureMinimumSkeletonDuration(loadingStartedAt);
+
     renderSidebar();
     renderHome();
+    setLoadingState(false);
     handleRoute();
   } catch (error) {
     console.error(error);
+    await ensureMinimumSkeletonDuration(loadingStartedAt);
+    setLoadingState(false);
     showError();
   }
 }
@@ -214,11 +227,20 @@ async function handleRoute() {
 }
 
 async function loadPost(post) {
+  const loadingStartedAt = Date.now();
+
   try {
+    renderPostSkeleton();
+    showPost();
+
     const response = await fetch(`./${post.path}`);
     if (!response.ok) throw new Error(`${post.path} load failed.`);
 
     const markdown = await response.text();
+    const renderedMarkdown = marked.parse(markdown);
+
+    await ensureMinimumSkeletonDuration(loadingStartedAt);
+
     elements.breadcrumb.innerHTML = `<a href="./">Home</a> / ${CATEGORY_LABELS[post.category] || post.category}`;
     elements.postCategory.textContent =
       CATEGORY_LABELS[post.category] || post.category;
@@ -227,7 +249,7 @@ async function loadPost(post) {
     elements.postTags.innerHTML = (post.tags || [])
       .map((tag) => `<span class="tag">#${escapeHtml(tag)}</span>`)
       .join("");
-    elements.markdownBody.innerHTML = marked.parse(markdown);
+    elements.markdownBody.innerHTML = renderedMarkdown;
     removeDuplicateMarkdownTitle(post.title);
     transformMarkdownInternalLinks(post);
     elements.markdownBody
@@ -241,8 +263,83 @@ async function loadPost(post) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   } catch (error) {
     console.error(error);
+    await ensureMinimumSkeletonDuration(loadingStartedAt);
     showError();
   }
+}
+
+function renderHomeSkeleton() {
+  elements.stats.innerHTML = `
+    <div class="stat stat-skeleton"><span class="skeleton-line w-40 h-6"></span><span class="skeleton-line w-50 h-3 mt-4"></span></div>
+    <div class="stat stat-skeleton"><span class="skeleton-line w-40 h-6"></span><span class="skeleton-line w-50 h-3 mt-4"></span></div>
+    <div class="stat stat-skeleton"><span class="skeleton-line w-40 h-6"></span><span class="skeleton-line w-50 h-3 mt-4"></span></div>
+  `;
+  elements.postCount.textContent = "로딩 중...";
+  elements.recentPosts.innerHTML = Array.from(
+    { length: 6 },
+    () => `
+      <div class="post-card post-card-skeleton" aria-hidden="true">
+        <div class="post-card-head">
+          <span class="skeleton-line w-30 h-6 rounded-full"></span>
+          <span class="skeleton-line w-30 h-4"></span>
+        </div>
+        <div class="post-card-body">
+          <span class="skeleton-line w-90 h-6"></span>
+          <span class="skeleton-line w-50 h-4 mt-10"></span>
+        </div>
+      </div>
+    `,
+  ).join("");
+}
+
+function renderSidebarSkeleton() {
+  elements.categoryNav.innerHTML = Array.from(
+    { length: 6 },
+    () => `
+    <section class="category-group sidebar-skeleton-group" aria-hidden="true">
+      <div class="category-title-skeleton">
+        <span class="skeleton-line w-55 h-4"></span>
+        <span class="skeleton-line w-18 h-4"></span>
+      </div>
+      <div class="post-list-skeleton">
+        <span class="skeleton-line w-82 h-4"></span>
+        <span class="skeleton-line w-75 h-4"></span>
+      </div>
+    </section>
+  `,
+  ).join("");
+}
+
+function setLoadingState(isLoading) {
+  elements.searchInput.disabled = isLoading;
+  elements.searchInput.setAttribute("aria-busy", String(isLoading));
+  elements.content.setAttribute("aria-busy", String(isLoading));
+}
+
+function renderPostSkeleton() {
+  elements.breadcrumb.innerHTML =
+    '<span class="skeleton-line w-30 h-4"></span>';
+  elements.postCategory.innerHTML =
+    '<span class="skeleton-line w-24 h-4"></span>';
+  elements.postDate.innerHTML = '<span class="skeleton-line w-18 h-4"></span>';
+  elements.postTitle.innerHTML = '<span class="skeleton-line w-70 h-6"></span>';
+  elements.postTags.innerHTML = `
+    <span class="tag tag-skeleton"></span>
+    <span class="tag tag-skeleton"></span>
+    <span class="tag tag-skeleton"></span>
+  `;
+  elements.markdownBody.innerHTML = `
+    <div class="markdown-skeleton" aria-hidden="true">
+      <span class="skeleton-line w-95 h-4"></span>
+      <span class="skeleton-line w-90 h-4"></span>
+      <span class="skeleton-line w-82 h-4"></span>
+      <span class="skeleton-line w-88 h-4"></span>
+      <span class="skeleton-line w-68 h-4"></span>
+      <span class="skeleton-block"></span>
+      <span class="skeleton-line w-92 h-4"></span>
+      <span class="skeleton-line w-78 h-4"></span>
+    </div>
+  `;
 }
 
 function transformMarkdownInternalLinks(currentPost) {
@@ -400,18 +497,13 @@ function closeSidebar() {
 function toggleTheme() {
   const nextTheme =
     document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-
   document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("dev-journal-theme", nextTheme);
   updateThemeButton(nextTheme);
 }
 
 function applySavedTheme() {
-  const savedTheme =
-    localStorage.getItem("dev-journal-theme") ||
-    localStorage.getItem("til-theme");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const theme = savedTheme || (prefersDark ? "dark" : "light");
+  const theme = prefersDark ? "dark" : "light";
 
   document.documentElement.dataset.theme = theme;
   updateThemeButton(theme);
@@ -479,4 +571,18 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+async function ensureMinimumSkeletonDuration(startedAt) {
+  const elapsed = Date.now() - startedAt;
+  const remaining = MIN_SKELETON_DURATION_MS - elapsed;
+  if (remaining > 0) {
+    await wait(remaining);
+  }
+}
+
+function wait(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
