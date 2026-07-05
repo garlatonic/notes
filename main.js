@@ -8,6 +8,8 @@
   algorithm: "Algorithm",
   cs: "Computer Science",
   projects: "Projects",
+  "live-coding": "Live Coding",
+  "coding-test": "Coding Test",
 };
 
 const CATEGORY_ORDER = [
@@ -16,10 +18,12 @@ const CATEGORY_ORDER = [
   "javascript",
   "react",
   "nextjs",
-  "troubleshooting",
-  "algorithm",
   "cs",
   "projects",
+  "troubleshooting",
+  "algorithm",
+  "live-coding",
+  "coding-test",
 ];
 
 const state = {

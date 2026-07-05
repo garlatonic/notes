@@ -1,5 +1,7 @@
 # Dev Journal
 
+> 이 프로젝트는 **Codex**로 작업되었습니다.
+
 Markdown으로 작성한 TIL을 GitHub Pages에서 읽기 좋은 정적 문서 사이트로 보여주는 개인 학습 기록 저장소입니다.
 
 프레임워크나 빌드 과정 없이 `index.html`, `style.css`, `main.js`만으로 동작합니다. Markdown 파싱은 CDN의 `marked.js`, 코드 하이라이팅은 `highlight.js`를 사용합니다.
@@ -24,6 +26,8 @@ til/
 ├── troubleshooting/
 ├── algorithm/
 ├── cs/
+├── coding-test/
+├── live-coding/
 ├── projects/
 └── assets/
 ```
@@ -101,10 +105,12 @@ VS Code를 사용한다면 Live Server 확장으로 열어도 됩니다.
 - `javascript`
 - `react`
 - `nextjs`
-- `troubleshooting`
-- `algorithm`
 - `cs`
 - `projects`
+- `troubleshooting`
+- `algorithm`
+- `live coding`
+- `coding test`
 
 카테고리를 추가하려면 폴더를 만들고 `main.js`의 `CATEGORY_LABELS`, `CATEGORY_ORDER`에 항목을 추가하면 됩니다.
 
@@ -116,4 +122,3 @@ VS Code를 사용한다면 Live Server 확장으로 열어도 됩니다.
 - 목차 자동 생성
 - `posts.json` 자동 생성 스크립트
 - GitHub Actions를 이용한 링크 검사
-
