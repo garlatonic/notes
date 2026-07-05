@@ -47,5 +47,19 @@
     "path": "live-coding/function-my-bind.md",
     "date": "2026-07-05",
     "tags": ["live-coding", "javascript", "function", "bind"]
+  },
+  {
+    "title": "라이브코딩 문제 만들다 공부를 더 해버림",
+    "category": "daily",
+    "path": "daily/2026-07-05.md",
+    "date": "2026-07-05",
+    "tags": ["til", "retrospective", "new-feature"]
+  },
+  {
+    "title": "prototype 이해하기",
+    "category": "javascript",
+    "path": "javascript/prototype.md",
+    "date": "2026-07-05",
+    "tags": ["javascript", "prototype"]
   }
 ]
