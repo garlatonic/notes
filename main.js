@@ -155,7 +155,7 @@ function renderSidebarPost(post) {
 }
 
 function renderHome() {
-  const recent = state.filteredPosts.slice(0, 6);
+  const recent = state.filteredPosts.slice(0, 12);
   const categoryCount = new Set(state.posts.map((post) => post.category)).size;
   const tagCount = new Set(state.posts.flatMap((post) => post.tags || [])).size;
 
@@ -165,25 +165,25 @@ function renderHome() {
     <div class="stat"><strong>${tagCount}</strong><span>태그</span></div>
   `;
   elements.postCount.textContent = `${state.filteredPosts.length} pages`;
-  elements.recentPosts.innerHTML = recent.map(renderPostCard).join("");
+  elements.recentPosts.innerHTML = recent.length
+    ? recent.map(renderPostCard).join("")
+    : `<p class="empty-card">검색 결과가 없습니다.</p>`;
   renderIcons();
 }
 
 function renderPostCard(post) {
-  const tags = (post.tags || [])
-    .slice(0, 3)
-    .map((tag) => `#${tag}`)
-    .join(" ");
+  const tags = (post.tags || []).slice(0, 3);
+  const category = CATEGORY_LABELS[post.category] || post.category;
 
   return `
     <a class="post-card" href="#${encodeHashPath(post.path)}">
-      <div>
-        <p>${CATEGORY_LABELS[post.category] || post.category}</p>
-        <h3>${escapeHtml(post.title)}</h3>
-        <p>${escapeHtml(tags)}</p>
+      <div class="post-card-head">
+        <span class="card-category">${escapeHtml(category)}</span>
+        <span class="card-date">${formatDate(post.date)}</span>
       </div>
-      <div class="card-meta">
-        <span>${formatDate(post.date)}</span>
+      <div class="post-card-body">
+        <h3>${escapeHtml(post.title)}</h3>
+        <p>${escapeHtml(tags.map((tag) => `#${tag}`).join(" ") || "#untagged")}</p>
       </div>
     </a>
   `;
@@ -229,6 +229,7 @@ async function loadPost(post) {
       .join("");
     elements.markdownBody.innerHTML = marked.parse(markdown);
     removeDuplicateMarkdownTitle(post.title);
+    transformMarkdownInternalLinks(post);
     elements.markdownBody
       .querySelectorAll("pre code")
       .forEach((block) => hljs.highlightElement(block));
@@ -242,6 +243,78 @@ async function loadPost(post) {
     console.error(error);
     showError();
   }
+}
+
+function transformMarkdownInternalLinks(currentPost) {
+  const anchors = elements.markdownBody.querySelectorAll("a[href]");
+
+  anchors.forEach((anchor) => {
+    const href = anchor.getAttribute("href") || "";
+    const resolvedPath = resolveMarkdownPath(href, currentPost.path);
+    if (!resolvedPath) return;
+
+    const linkedPost = state.posts.find((post) => post.path === resolvedPath);
+    if (!linkedPost) {
+      anchor.setAttribute("href", `#${encodeHashPath(resolvedPath)}`);
+      return;
+    }
+
+    const card = createInlinePostCard(linkedPost);
+    const parent = anchor.parentElement;
+    const shouldReplaceParagraph =
+      parent &&
+      parent.tagName === "P" &&
+      parent.childElementCount === 1 &&
+      parent.textContent.trim() === anchor.textContent.trim();
+
+    if (shouldReplaceParagraph) {
+      parent.replaceWith(card);
+      return;
+    }
+
+    anchor.replaceWith(card);
+  });
+}
+
+function createInlinePostCard(post) {
+  const card = document.createElement("a");
+  const category = CATEGORY_LABELS[post.category] || post.category;
+  const tags = (post.tags || [])
+    .slice(0, 3)
+    .map((tag) => `#${tag}`)
+    .join(" ");
+
+  card.className = "inline-post-card";
+  card.href = `#${encodeHashPath(post.path)}`;
+  card.innerHTML = `
+    <span class="inline-post-card-head">
+      <span class="inline-post-card-category">${escapeHtml(category)}</span>
+      <span class="inline-post-card-date">${formatDate(post.date)}</span>
+    </span>
+    <strong class="inline-post-card-title">${escapeHtml(post.title)}</strong>
+    <span class="inline-post-card-tags">${escapeHtml(tags || "#untagged")}</span>
+  `;
+
+  return card;
+}
+
+function resolveMarkdownPath(href, currentPath) {
+  if (!href) return "";
+
+  const trimmed = href.trim();
+  if (!trimmed || trimmed.startsWith("#")) return "";
+  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed)) return "";
+
+  const [target] = trimmed.split(/[?#]/);
+  if (!target || !target.toLowerCase().endsWith(".md")) return "";
+
+  const currentDir =
+    currentPath.lastIndexOf("/") >= 0
+      ? currentPath.slice(0, currentPath.lastIndexOf("/") + 1)
+      : "";
+  const resolved = new URL(target, `https://local/${currentDir}`).pathname;
+
+  return decodeURIComponent(resolved).replace(/^\/+/, "");
 }
 
 function handleCategoryToggle(event) {

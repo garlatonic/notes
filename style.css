@@ -45,7 +45,12 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    "Pretendard",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 1.65;
@@ -407,19 +412,16 @@ svg {
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
+  gap: 10px;
   margin: 26px 0 42px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 
 .stat {
   min-width: 0;
-  padding: 12px 14px;
-}
-
-.stat + .stat {
-  border-left: 1px solid var(--border);
+  padding: 14px 16px;
+  background: color-mix(in srgb, var(--bg) 84%, var(--sidebar) 16%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
 }
 
 .stat strong {
@@ -440,9 +442,7 @@ svg {
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 6px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
 }
 
 .section-title h2 {
@@ -458,63 +458,96 @@ svg {
 
 .post-grid {
   display: grid;
-  gap: 0;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 14px;
 }
 
 .post-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 18px;
-  align-items: center;
-  min-height: 58px;
-  padding: 10px 4px;
-  border-bottom: 1px solid var(--border);
-  border-radius: 0;
+  display: block;
+  min-height: 172px;
+  padding: 14px;
+  background: color-mix(in srgb, var(--bg) 86%, var(--sidebar) 14%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 120ms ease;
 }
 
 .post-card:hover {
-  background: color-mix(in srgb, var(--sidebar-hover) 55%, transparent);
+  border-color: var(--border-strong);
 }
 
-.post-card h3 {
-  margin: 2px 0;
-  overflow: hidden;
-  color: var(--text);
-  font-size: 15px;
-  font-weight: 520;
-  line-height: 1.45;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+[data-theme="dark"] .post-card {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
 }
 
-.post-card p {
-  margin: 0;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 12px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+[data-theme="dark"] .post-card:hover {
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
 }
 
-.card-meta {
+.post-card-head {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-category {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  color: var(--muted);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-date {
   color: var(--faint);
   font-size: 12px;
   white-space: nowrap;
 }
 
-.open-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
+.post-card-body {
+  margin-top: 14px;
 }
 
-.open-label svg {
-  width: 12px;
-  height: 12px;
+.post-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 640;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card p {
+  margin: 10px 0 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: normal;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.empty-card {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 16px;
+  color: var(--muted);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  font-size: 14px;
 }
 
 .post-view {
@@ -626,6 +659,66 @@ svg {
 
 .markdown-body a:hover {
   border-bottom-color: var(--text);
+}
+
+.markdown-body .inline-post-card {
+  display: block;
+  margin: 12px 0;
+  padding: 14px;
+  background: color-mix(in srgb, var(--bg) 84%, var(--sidebar) 16%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 120ms ease;
+}
+
+.markdown-body .inline-post-card:hover {
+  border-color: var(--border-strong);
+  border-bottom-color: var(--border-strong);
+}
+
+.markdown-body .inline-post-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.markdown-body .inline-post-card-category {
+  display: inline-flex;
+  align-items: center;
+  min-height: 23px;
+  padding: 0 8px;
+  color: var(--muted);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.markdown-body .inline-post-card-date {
+  color: var(--faint);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.markdown-body .inline-post-card-title {
+  display: block;
+  margin-top: 10px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.markdown-body .inline-post-card-tags {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .markdown-body code {
@@ -751,17 +844,7 @@ svg {
     grid-template-columns: 1fr;
   }
 
-  .stat + .stat {
-    border-top: 1px solid var(--border);
-    border-left: 0;
-  }
-
   .post-card {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-
-  .card-meta {
-    align-items: flex-start;
+    min-height: 152px;
   }
 }
