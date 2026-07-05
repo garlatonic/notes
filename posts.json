@@ -33,5 +33,12 @@
     "path": "live-coding/promise-concurrency-limit.md",
     "date": "2026-07-05",
     "tags": ["live-coding", "javascript", "promise", "concurrency"]
+  },
+  {
+    "title": "myAll() 메서드 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/promise-my-all.md",
+    "date": "2026-07-05",
+    "tags": ["live-coding", "javascript", "promise", "all"]
   }
 ]
