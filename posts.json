@@ -26,5 +26,12 @@
       "this",
       "filter"
     ]
+  },
+  {
+    "title": "비동기 작업 동시성 제어 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/promise-concurrency-limit.md",
+    "date": "2026-07-05",
+    "tags": ["live-coding", "javascript", "promise", "concurrency"]
   }
 ]
