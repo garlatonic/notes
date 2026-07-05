@@ -105,3 +105,11 @@ Array.prototype.myMap = function (callback) {
 메서드를 구현할 때는, 해당 메서드가 어떤 객체에서 호출될 수 있는지, 그리고 그 객체의 속성과 메서드를 어떻게 활용할 수 있는지를 이해하는 것이 중요하다.
 
 `myMap()` 메서드 구현을 통해 `prototype`, `this`, 그리고 배열 메서드의 동작 방식을 깊이 이해할 수 있었다.
+
+
+---
+
+## 참고
+- [MDN - Object prototypes](https://developer.mozilla.org/ko/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object_prototypes)
+- [MDN - Array.prototype.map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+- [MDN - this](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/this)

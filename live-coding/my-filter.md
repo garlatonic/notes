@@ -97,3 +97,9 @@ Array.prototype.myFilter = function (callback) {
 ## 결론
 
 `myFilter()` 메서드를 구현하면서 `myMap()` 메서드와는 다르게 조건에 맞는 요소만을 반환해야 한다는 점에서 조금 더 까다로웠다. 하지만, `prototype`, `this`, `filter()` 메서드의 동작 방식에 대한 이해가 충분하다면 어렵지 않게 구현할 수 있다.
+
+---
+
+## 참고
+
+- [MDN - Array.prototype.filter()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
