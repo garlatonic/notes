@@ -89,8 +89,7 @@ async function init() {
     if (!response.ok) throw new Error("posts.json load failed.");
 
     state.posts = await response.json();
-    state.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-    state.filteredPosts = [...state.posts];
+    state.filteredPosts = [...state.posts.reverse()];
 
     await ensureMinimumSkeletonDuration(loadingStartedAt);
 
@@ -376,9 +375,7 @@ function transformMarkdownInternalLinks(currentPost) {
 function createInlinePostCard(post) {
   const card = document.createElement("a");
   const category = CATEGORY_LABELS[post.category] || post.category;
-  const tags = (post.tags || [])
-    .map((tag) => `#${tag}`)
-    .join(" ");
+  const tags = (post.tags || []).map((tag) => `#${tag}`).join(" ");
 
   card.className = "inline-post-card";
   card.href = `#${encodeHashPath(post.path)}`;
