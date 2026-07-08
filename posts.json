@@ -68,5 +68,12 @@
     "path": "daily/2026-07-06.md",
     "date": "2026-07-06",
     "tags": ["javascript", "setTimeout"]
+  },
+  {
+    "title": "JavaScript의 모듈 시스템",
+    "category": "javascript",
+    "path": "javascript/modules.md",
+    "date": "2026-07-08",
+    "tags": ["javascript", "module", "es-modules"]
   }
 ]
