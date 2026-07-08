@@ -75,5 +75,12 @@
     "path": "javascript/modules.md",
     "date": "2026-07-08",
     "tags": ["javascript", "module", "es-modules"]
+  },
+  {
+    "title": "React 공부하다 JavaScript 정리하기",
+    "category": "daily",
+    "path": "daily/2026-07-08.md",
+    "date": "2026-07-08",
+    "tags": ["javascript", "react"]
   }
 ]
