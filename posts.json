@@ -96,5 +96,12 @@
     "path": "live-coding/class-scheduler.md",
     "date": "2026-07-09",
     "tags": ["live-coding", "javascript", "class", "scheduler"]
+  },
+  {
+    "title": "비동기 익숙해지기",
+    "category": "daily",
+    "path": "daily/2026-07-09.md",
+    "date": "2026-07-09",
+    "tags": ["til", "curry", "scheduler"]
   }
 ]
