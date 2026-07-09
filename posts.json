@@ -82,5 +82,19 @@
     "path": "daily/2026-07-08.md",
     "date": "2026-07-08",
     "tags": ["javascript", "react"]
+  },
+  {
+    "title": "curry 함수 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/function-curry.md",
+    "date": "2026-07-09",
+    "tags": ["live-coding", "javascript", "function", "curry"]
+  },
+  {
+    "title": "Scheduler 클래스로 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/class-scheduler.md",
+    "date": "2026-07-09",
+    "tags": ["live-coding", "javascript", "class", "scheduler"]
   }
 ]
