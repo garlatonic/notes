@@ -10,6 +10,7 @@
   projects: "프로젝트",
   "live-coding": "라이브 코딩",
   "coding-test": "코딩 테스트",
+  shopify: "Shopify",
 };
 
 const CATEGORY_ORDER = [
@@ -24,6 +25,7 @@ const CATEGORY_ORDER = [
   "algorithm",
   "live-coding",
   "coding-test",
+  "shopify",
 ];
 
 const MIN_SKELETON_DURATION_MS = 150;
@@ -89,7 +91,7 @@ async function init() {
     if (!response.ok) throw new Error("posts.json load failed.");
 
     state.posts = await response.json();
-    state.filteredPosts = [...state.posts.reverse()];
+    state.filteredPosts = [...state.posts];
 
     await ensureMinimumSkeletonDuration(loadingStartedAt);
 
@@ -167,7 +169,7 @@ function renderSidebarPost(post) {
 }
 
 function renderHome() {
-  const recent = state.filteredPosts.slice(0, 12);
+  const recent = state.filteredPosts.slice(-12).reverse();
   const categoryCount = new Set(state.posts.map((post) => post.category)).size;
   const tagCount = new Set(state.posts.flatMap((post) => post.tags || [])).size;
 
