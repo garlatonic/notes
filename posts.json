@@ -103,5 +103,19 @@
     "path": "daily/2026-07-09.md",
     "date": "2026-07-09",
     "tags": ["til", "curry", "scheduler"]
+  },
+  {
+    "title": "Shopify 로드맵",
+    "category": "shopify",
+    "path": "shopify/00-shopify-roadmap.md",
+    "date": "2026-07-10",
+    "tags": ["shopify", "roadmap"]
+  },
+  {
+    "title": "라이브코딩 스터디와 입사 전 학습해야 할 것들",
+    "category": "daily",
+    "path": "daily/2026-07-10.md",
+    "date": "2026-07-10",
+    "tags": ["til", "live-coding", "shopify", "roadmap"]
   }
 ]
