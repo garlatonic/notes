@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 10px;
 }
 
 .brand {
@@ -60,7 +59,6 @@
   align-items: center;
   gap: 8px;
   height: 32px;
-  margin-bottom: 18px;
   padding: 0 8px;
   color: var(--muted);
   background: transparent;
@@ -97,7 +95,12 @@
 }
 
 .category-nav {
-  padding-bottom: 46px;
+  flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .category-group {
@@ -264,9 +267,7 @@
 }
 
 .theme-toggle {
-  position: fixed;
-  bottom: 12px;
-  left: 12px;
+  box-sizing: border-box;
   width: calc(var(--sidebar-width) - 24px);
   justify-content: flex-start;
   background: var(--sidebar);

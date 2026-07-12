@@ -485,11 +485,13 @@ function setActiveLink(path) {
 function openSidebar() {
   elements.sidebar.classList.add("open");
   elements.backdrop.hidden = false;
+  document.body.style.overflow = "hidden";
 }
 
 function closeSidebar() {
   elements.sidebar.classList.remove("open");
   elements.backdrop.hidden = true;
+  document.body.style.overflow = "";
 }
 
 function toggleTheme() {

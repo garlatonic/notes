@@ -7,8 +7,11 @@
 .sidebar {
   position: sticky;
   top: 0;
+  bottom: 0;
   height: 100vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   padding: 14px 12px;
   background: var(--sidebar);
   border-right: 1px solid var(--border);
