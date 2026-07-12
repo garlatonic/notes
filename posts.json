@@ -131,5 +131,12 @@
     "path": "live-coding/lru-cache.md",
     "date": "2026-07-12",
     "tags": ["live-coding", "javascript", "lru-cache"]
+  },
+  {
+    "title": "Shopify 이해하기",
+    "category": "shopify",
+    "path": "shopify/01-shopify-overview.md",
+    "date": "2026-07-12",
+    "tags": ["shopify", "overview"]
   }
 ]
