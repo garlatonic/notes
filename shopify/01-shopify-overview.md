@@ -24,7 +24,7 @@ Shopify를 이해할 때 가장 중요한 것은 아래와 같은 4가지 구성
 전체적인 구조는 아래와 같다.
 
 <figure align="center">
-  <img src="../assets/image/shopify-overview.png" width="200" alt="Shopify 구성 요소" />
+  <img src="/assets/image/shopify-overview.png" width="200" alt="Shopify 구성 요소" />
 </figure>
 
 ### Merchant (판매자)
