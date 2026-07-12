@@ -138,5 +138,12 @@
     "path": "shopify/01-shopify-overview.md",
     "date": "2026-07-12",
     "tags": ["shopify", "overview"]
+  },
+  {
+    "title": "라이브코딩 스터디와 입사를 준비하며",
+    "category": "daily",
+    "path": "daily/2026-07-12.md",
+    "date": "2026-07-12",
+    "tags": ["til", "live-coding", "shopify"]
   }
 ]
