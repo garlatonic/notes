@@ -117,5 +117,19 @@
     "path": "daily/2026-07-10.md",
     "date": "2026-07-10",
     "tags": ["til", "live-coding", "shopify", "roadmap"]
+  },
+  {
+    "title": "myFlat() 메서드 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/array-my-flat.md",
+    "date": "2026-07-12",
+    "tags": ["live-coding", "javascript", "array", "prototype", "this", "flat"]
+  },
+  {
+    "title": "LRU Cache 구현하기",
+    "category": "live-coding",
+    "path": "live-coding/lru-cache.md",
+    "date": "2026-07-12",
+    "tags": ["live-coding", "javascript", "lru-cache"]
   }
 ]
