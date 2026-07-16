@@ -145,5 +145,12 @@
     "path": "daily/2026-07-12.md",
     "date": "2026-07-12",
     "tags": ["til", "live-coding", "shopify"]
+  },
+  {
+    "title": "Shopify Theme 이해하기",
+    "category": "shopify",
+    "path": "shopify/02-shopify-theme.md",
+    "date": "2026-07-13",
+    "tags": ["shopify", "theme"]
   }
 ]
