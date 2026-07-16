@@ -25,10 +25,10 @@ Shopify Theme은 정해진 디렉터리 구조를 가지며, 각 디렉터리와
 
 이 중 페이지의 UI 구조를 이해하는 데 가장 중요한 것은 <mark>**Template → Section → Block**의 관계</mark>이다.
 
-<figure align="center">
+<figure align="center" class="excalidraw-figure">
   <img
     src="https://garlatonic.github.io/notes/assets/image/shopify-theme-01.png"
-    width="200"
+    width="250"
     alt="Shopify Theme Structure"
   />
 </figure>
@@ -111,10 +111,10 @@ Online Store 2.0은 Shopify Theme을 보다 유연하고 모듈화된 형태로 
 
 개발자가 재사용 가능한 Section과 Block을 만들면 Merchant가 Theme Editor에서 이를 조합하여 페이지를 구성할 수 있다.
 
-<figure align="center">
+<figure align="center" class="excalidraw-figure">
   <img
     src="https://garlatonic.github.io/notes/assets/image/shopify-theme-02.png"
-    width="200"
+    width="270"
     alt="Shopify Online Store 2.0 Structure"
   />
 </figure>

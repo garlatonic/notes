@@ -152,5 +152,12 @@
     "path": "shopify/02-shopify-theme.md",
     "date": "2026-07-13",
     "tags": ["shopify", "theme"]
+  },
+  {
+    "title": "Shopify App 이해하기",
+    "category": "shopify",
+    "path": "shopify/03-shopify-app.md",
+    "date": "2026-07-14",
+    "tags": ["shopify", "app"]
   }
 ]
