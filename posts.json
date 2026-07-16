@@ -159,5 +159,19 @@
     "path": "shopify/03-shopify-app.md",
     "date": "2026-07-14",
     "tags": ["shopify", "app"]
+  },
+  {
+    "title": "Shopify CLI 이해하기",
+    "category": "shopify",
+    "path": "shopify/04-shopify-cli.md",
+    "date": "2026-07-15",
+    "tags": ["shopify", "cli"]
+  },
+  {
+    "title": "Shopify API 이해하기",
+    "category": "shopify",
+    "path": "shopify/05-shopify-api.md",
+    "date": "2026-07-15",
+    "tags": ["shopify", "api"]
   }
 ]
