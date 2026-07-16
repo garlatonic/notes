@@ -732,6 +732,10 @@
   border-radius: 0.2em;
 }
 
+[data-theme="dark"] .markdown-body .excalidraw-figure img {
+  filter: invert(100%);
+}
+
 .text-link {
   color: var(--text);
   font-weight: 600;
